@@ -1,10 +1,10 @@
 ---
-title: "Untitled"
+title: "Developing Data Products - Week 2 - Assignment"
 author: "Joe M -- 26-DEC-2020"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -68,8 +68,25 @@ map <- df_map %>%                                                           ## C
 ```{r show_Map, message=FALSE, warning=FALSE}
 map
 ```
-         
+   
+   ----
+   
+### Code to create this document
+Loading Libraries
+``` {R load_libs, echo=TRUE, Eval=FALSE}
+```   
+   
+Pulling in, data from the working directory 
+``` {R set_data, echo=TRUE, Eval=FALSE}
+```
 
+Format Data for the Map
+``` {R set_MapData, echo=TRUE, Eval=FALSE, message=FALSE, warning=FALSE}
+```
+
+Display the map
+```{r show_Map, echo=TRUE, Eval=FALSE, fig.show='hide', fig.show=FALSE, results='hide'}
+```
 
 
 
