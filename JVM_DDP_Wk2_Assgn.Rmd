@@ -1,0 +1,79 @@
+---
+title: "Untitled"
+author: "Joe M -- 26-DEC-2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Overview 
+This HTML document covers the requirements for the assignment in week 2 of the Developing Data Products course.
+
+The requirements for this document are as follows:  
+Create a web page using R Markdown that features a map created with Leaflet.
+
+To facilitate this assignment's requirements, an interactive map is shown of the current COVID 19 status (AS of DEC 2020).  
+This information is available from 21-Jan-2020 to 8-Dec-2020. 
+The data set "COVID 19 Daily Updates" was acquired from Kaggle:  (https://www.kaggle.com/gpreda/coronavirus-2019ncov)
+
+For this assignment, that information was cut down to just the US. The data was cleaned up a little. 
+The running sums for each state/area was then calculated to only show a single value. The CSV file for this assignment  
+has been included in the GitHub repository.
+
+***Note***: Not all recovery numbers have been recorded. For this reason, I feel the recovery numbers are understated.
+
+
+For a more streamlined view, the code for this project is given at the the bottom.
+
+## Map of COVID cases in the US up to December 2020 map
+
+``` {R load_libs}
+library(leaflet)                                             ## Required for assignment - Map rendering
+library(htmltools)                                           ## Further HTML tools for rendering
+``` 
+
+
+``` {R set_data}
+setwd("C:/Users/Hermit/Desktop/Coursera Course/Data Science Specialization - JH/9) Developing Data Products/Week 2/DDP_Wk2_Assgn")
+datamap <- read.csv(file = "covid-19-US.csv", header = TRUE, sep = ",")
+
+    
+```
+     
+``` {R set_MapData, message=FALSE, warning=FALSE}
+df_map <- data.frame(State = datamap$State,                                 ## Create Data Frame for the COVID Data
+                     Confirmed_RS = datamap$Confirmed_RS,
+                     Recovered_RS = datamap$Recovered_RS,
+                     Deaths_RS = datamap$Deaths_RS,
+                     Latitude = datamap$Latitude,
+                     Longitude = datamap$Longitude
+                     )
+
+map <- df_map %>%                                                           ## Create Map  
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup=paste(df_map$State
+                         , paste("<br>Confirmed Cases: ",htmlEscape(df_map$Confirmed_RS))
+                         , paste("<br>Noted Recovery: ",htmlEscape(df_map$Recovered_RS))
+                         , paste("<br>Noted Deaths: ",htmlEscape(df_map$Deaths_RS))
+                        )
+            )
+```
+ 
+```{r show_Map, message=FALSE, warning=FALSE}
+map
+```
+         
+
+
+
+
+
+
+
+
