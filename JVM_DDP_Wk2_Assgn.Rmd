@@ -1,6 +1,6 @@
 ---
 title: "Developing Data Products - Week 2 - Assignment"
-author: "Joe M -- 26-DEC-2020"
+author: "Joe M - - 26-DEC-2020"
 output:
   html_document:
     df_print: paged
